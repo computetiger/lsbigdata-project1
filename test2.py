@@ -161,3 +161,10 @@ pydataset.data()
 import pandas as pd
 df=pd.read_csv("sample1.csv")
 df
+
+"안녕하세요 %.4f"%(3.44454)
+aa=3.4567
+print(f"hihihi {aa:.3f}")
+
+
+#테스트
