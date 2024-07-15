@@ -1,0 +1,211 @@
+---
+title: "LS빅데이터스쿨 3일차"
+author: "지원최"
+format: html
+editor: visual
+jupyter: python3
+editor_options: 
+  chunk_output_type: console
+---
+
+## GitHub Use
+
+### Quarto
+
+> This is first block.\
+> \>This is second block.\
+> \>\>This is a third block.
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{python}
+3+3
+```
+
+1.  use\
+2.  using\
+3.  to use
+
+#### Example
+
+-   Red
+    -   Green\
+        +Blue
+
+This is a code.
+
+```{python}
+"THis is a code block."
+```
+
+end.
+
+##코드 청크 2가지 종류\
+1. 인라인 코드 청크: (\`)을 하나로 묶음\
+2. 디스플레이 코드 청크: (\`\`\`)세개로 묶음
+
+## 실행가능한 코드 청크
+
+백틱 뒤에 \`{python}' 을 붙여주면 됨.
+
+## 코드 청크 실행 옵션
+
+옵션은 `#|`로 시작함.\
+\* `echo` 옵션: 코드를 문서에 보여줌\
+\* `eval` 옵션: 코드를 돌릴 것인가, 그냥 둘 것인가 결정.
+
+```{python}
+#| echo: fenced
+#| eval: false
+1+1
+```
+
+'echo: fenced'하면 코드 그대로 코드 자체로 보여줌(echo를 제외하고)
+
+## Link
+
+[Title](link) [네이버](http://naver.com "naver")
+
+### New
+
+**doulble Font** *doulble Font* **doulble Font**
+
+# 줄바꿈
+
+-   i like an apple.\
+    I like ...
+
+# Image
+
+[Dog](https://images.app.goo.gl/kSVBHnsRFadQpBFs8)       
+![기관사](./img/img.jpg)
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{python}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{python}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+## 각주
+
+이것은 각주[^1]입니다.\
+이것은 각주[^2]입니다.
+
+[^1]: 이것은 참조된 텍스트입니다.
+
+[^2]: 이것은 참조된 텍스트입니다.
+
+-   [ ] 할 일
+-   [x] 한 일       
+
+## 수식 입력 방법
+- 인라인 수식: $ 하나로 감싸준다. (본문에 입력)     
+-디스플레이 수식: $$ 로 감싸준다. (독립적인 문단)     
+
+문장 안에 숫자 $5^3$ 를 넣어보자.       
+$$
+x^2 + y^2 = 5
+$$
+
+
+$$
+\sqrt{2}^{3}
+$$
+
+# 이항정리의 증명
+
+## 이항정리 (Binomial Theorem)
+
+이항정리는 다음과 같이 주어진다:
+
+$$
+(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k
+$$
+
+여기서 $\binom{n}{k}$는 이항계수로, $n$개의 항목 중 $k$개를 선택하는 방법의 수를 나타낸다.
+
+## 증명
+
+### 수학적 귀납법 (Mathematical Induction)
+
+1. **기초 단계 (Base Step):** $n = 0$ 일 때,
+   
+   $$
+   (x + y)^0 = 1 \quad \text{이고} \quad \sum_{k=0}^{0} \binom{0}{k} x^{0-k} y^k = \binom{0}{0} x^0 y^0 = 1
+   $$
+   
+   따라서 $n = 0$일 때 성립한다.
+
+2. **귀납 가정 (Induction Hypothesis):**
+   
+   $n = m$일 때, 이항정리가 성립한다고 가정하자:
+   
+   $$
+   (x + y)^m = \sum_{k=0}^{m} \binom{m}{k} x^{m-k} y^k
+   $$
+
+3. **귀납 단계 (Induction Step):**
+   
+   $n = m+1$일 때를 증명하자:
+   
+   $$
+   (x + y)^{m+1} = (x + y)(x + y)^m
+   $$
+   
+   귀납 가정을 이용하면:
+   
+   $$
+   (x + y)^{m+1} = (x + y) \sum_{k=0}^{m} \binom{m}{k} x^{m-k} y^k
+   $$
+   
+   이제 분배 법칙을 이용해 전개하면:
+   
+   $$
+   (x + y)^{m+1} = \sum_{k=0}^{m} \binom{m}{k} x^{m+1-k} y^k + \sum_{k=0}^{m} \binom{m}{k} x^{m-k} y^{k+1}
+   $$
+
+   두 번째 합에서 $k$를 $k-1$로 바꾸어 다시 쓰면:
+   
+   $$
+   (x + y)^{m+1} = \sum_{k=0}^{m} \binom{m}{k} x^{m+1-k} y^k + \sum_{k=1}^{m+1} \binom{m}{k-1} x^{m+1-(k-1)} y^k
+   $$
+   
+   여기서 $k=0$인 항과 $k=m+1$인 항을 따로 쓰면:
+   
+   $$
+   (x + y)^{m+1} = x^{m+1} + \sum_{k=1}^{m} \left( \binom{m}{k} + \binom{m}{k-1} \right) x^{m+1-k} y^k + y^{m+1}
+   $$
+   
+   이항계수의 성질에 의해:
+   
+   $$
+   \binom{m}{k} + \binom{m}{k-1} = \binom{m+1}{k}
+   $$
+   
+   따라서:
+   
+   $$
+   (x + y)^{m+1} = x^{m+1} + \sum_{k=1}^{m} \binom{m+1}{k} x^{m+1-k} y^k + y^{m+1}
+   $$
+   
+   이는:
+   
+   $$
+   (x + y)^{m+1} = \sum_{k=0}^{m+1} \binom{m+1}{k} x^{m+1-k} y^k
+   $$
+   
+   따라서 이항정리는 $n = m+1$일 때도 성립한다.
+
+귀납법에 의해, 이항정리는 모든 자연수 $n$에 대해 성립한다.
+
