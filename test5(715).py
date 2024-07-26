@@ -43,7 +43,14 @@ a[a>50]
 
 #
 np.random.seed(2024)
-a=np.random.randint(1,10000,300)
+a=?np.random.randint(1,10000,300)
+b=np.random.choice(np.arange(1,4),21,False,np.array([2/5,2/5,1/5])
+print(b)
+sum(b==1)
+sum(b==2)
+sum(b==3)
+
+
 a[(a>200)&(a<5000)]
 
 #
