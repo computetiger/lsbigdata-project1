@@ -12,6 +12,6 @@ Encoding: UTF-8
 RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
-PythonType: virtualenv
+PythonType: system
 PythonVersion: 3.12.4
-PythonPath: ~/.virtualenvs/r-reticulate/Scripts/python.exe
+PythonPath: C:/DS/Python/Python312/python.exe
