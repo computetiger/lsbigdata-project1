@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt   
 import seaborn as sns    
 
+<<<<<<< HEAD
 train_row=pd.read_csv('data/house/train.csv')
 train=train_row.copy()
 test=pd.read_csv('data/house/test.csv')
@@ -60,13 +61,31 @@ train[["Id","YearBuilt"]]
 test=pd.read_csv('data/house/test.csv')
 test=test[["Id", "YearBuilt"]]
 new=pd.merge(test,train_mean,on="YearBuilt", how="left")
+=======
+train=pd.read_csv('data/house/train.csv')
+train_mean=train.groupby("YearBuilt")[["SalePrice"]].mean()
+
+train[["Id","YearBuilt"]]
+
+test=pd.read_csv('data/house/test.csv')
+test=test[["Id", "YearBuilt"]]
+
+new=pd.merge(test,train_mean,on="YearBuilt", how="left")
+
+>>>>>>> aa87cfc3d9d1d95a0b182a700d4d50954b0fc125
 #결측치 전처리
 cond1 =new["SalePrice"].isnull()
 cond2 =(new["YearBuilt"]>=1900)
 cond3 = (new["YearBuilt"]<1900)
 new.loc[cond1&cond2, "SalePrice"] =  new.loc[cond2,"SalePrice"].mean()
 new.loc[cond1&cond3, "SalePrice"] =  new.loc[cond3,"SalePrice"].mean()
+<<<<<<< HEAD
 new=new[["Id","SalePrice"]]
+=======
+
+new=new[["Id","SalePrice"]]
+
+>>>>>>> aa87cfc3d9d1d95a0b182a700d4d50954b0fc125
 new.info()
 new["Id"]=new["Id"].astype(str)
 new.sort_values(by="Id", ascending=False)
@@ -74,6 +93,7 @@ new.to_csv("sample_submission.csv", index=False)
 
 
 
+<<<<<<< HEAD
 # 수정정
 #train["LandContour"]=np.where(train["LandContour"]=="Lvl","0",np.where(train["LandContour"]=="Bnk",1,np.where(train["LandContour"]=="HLS",2,3)))
 # Lvl: 거의 플랫, Bnk: Banked - Quick and significant rise from street grade to building 
@@ -167,4 +187,14 @@ plt.scatter(data = LandContour_scatter3, x="SaleType", y= "SalePrice", color = '
 plt.show()
 
 plt.scatter(data=, x=train["OverallQual"],y= "SalePrice"])
+=======
+
+
+new["SalePrice"].fillna(new["SalePrice"].mean(), inplace=True)
+
+new["SalePrice"].describe()
+
+
+new.isnull().sum()
+>>>>>>> aa87cfc3d9d1d95a0b182a700d4d50954b0fc125
 
