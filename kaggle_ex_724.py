@@ -196,5 +196,4 @@ new["SalePrice"].describe()
 
 
 new.isnull().sum()
->>>>>>> aa87cfc3d9d1d95a0b182a700d4d50954b0fc125
 
