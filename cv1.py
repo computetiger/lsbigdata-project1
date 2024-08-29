@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 from scipy.stats import uniform
 
-np.random.seed(42)
+np.random.seed(2024)
 x = uniform.rvs(size=30, loc=-4, scale=8)
 y = np.sin(x) + norm.rvs(size=30, loc=0, scale=0.3)
 
@@ -22,6 +22,7 @@ valid_set1=myindex[20:30]
 
 
 def make_tr_val(fold_num, df, cv_num=3):
+    np.random.seed(2024)
     myindex=np.random.choice(30,30,replace=False)
     #valid_index
     val_index=myindex[fold_num*10:(fold_num*10 +10)]
@@ -72,17 +73,17 @@ for j in np.arange(0, 3):
 import seaborn as sns
 
 df=pd.DataFrame({
-    "1": np.arange(0,10,0.01),
+    "lambda": np.arange(0,10,0.01),
     "tr": tr_result_total.mean(axis=0),
     "val": val_result_total.mean(axis=0)
 })
 
-sns.scatterplot(data=df, x="1",y="tr") 
-sns.scatterplot(data=df, x="1", y= "val", color="red") # red- valid set
+sns.scatterplot(data=df, x="lambda",y="tr") 
+sns.scatterplot(data=df, x="lambda", y= "val", color="red") # red- valid set
 plt.xlim(0,10)
 
 
 
 # alpha  를 0.03 으로 선택 
-np.argmin(val_result)
-np.arange(0, 1, 0.01)[np.argmin(val_result)]
+np.argmin(val_result_total.mean(axis=0))
+np.arange(0, 1, 0.01)[np.argmin(val_result_total.mean(axis=0))]

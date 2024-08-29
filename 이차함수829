@@ -1,0 +1,40 @@
+import sympy as sp
+import matplotlib as plt
+# x를 변수로 정의합니다.
+x = sp.symbols('x')
+
+# 이차함수를 정의합니다. 예를 들어 f(x) = 3x^2 + 2x + 1
+# a, b, c = sp.symbols('a b c')  # a, b, c는 일반적인 상수로 정의합니다.
+f = 6 * x**2 + 5 * x - 8
+
+# 이차함수를 미분합니다.
+f_prime = sp.diff(f, x)
+
+# 미분 결과를 출력합니다.
+print("이차함수의 원래 식:", f)
+print("미분된 함수:", f_prime)
+
+plt.plot(x,f)
+plt.plot(x,f_prime, color="red")
+#경사하강법
+
+import numpy as np
+x=10
+lstep=np.arange(100,0,-1)*0.01
+
+len(lstep)
+
+for i in range(100):
+    x-=lstep[i]*(2*x)
+print(x)
+x=9
+y=2
+lstep=0.1
+
+x-=lstep*(2*x-6)
+y-=lstep*(2*y-8)
+
+for i in range(100):
+    x-=lstep[i]*(2*x-6)
+    y-=lstep[i]*(2*y-8)
+print(x)
