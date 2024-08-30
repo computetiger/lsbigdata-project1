@@ -1,18 +1,19 @@
 import sympy as sp
 import matplotlib as plt
 # x를 변수로 정의합니다.
-x = sp.symbols('x')
+b, B  = sp.symbols('b,B')
 
 # 이차함수를 정의합니다. 예를 들어 f(x) = 3x^2 + 2x + 1
 # a, b, c = sp.symbols('a b c')  # a, b, c는 일반적인 상수로 정의합니다.
-f = 6 * x**2 + 5 * x - 8
-
+f = (1-(b+B))**2 + (4-(b+2*B))**2 + (1.5-(b+3*B))**2 +(5-(b+4* B))**2
 # 이차함수를 미분합니다.
-f_prime = sp.diff(f, x)
+f_primeb = sp.diff(f, b)
+f_primeB = sp.diff(f, B)
+
 
 # 미분 결과를 출력합니다.
-print("이차함수의 원래 식:", f)
-print("미분된 함수:", f_prime)
+print("b0 에 대해", f_primeb)
+print("BO 에 대해 ", f_primeB)
 
 plt.plot(x,f)
 plt.plot(x,f_prime, color="red")
@@ -27,12 +28,14 @@ len(lstep)
 for i in range(100):
     x-=lstep[i]*(2*x)
 print(x)
-x=9
-y=2
+
+
+b=10
+B=10
 lstep=0.1
 
-x-=lstep*(2*x-6)
-y-=lstep*(2*y-8)
+b-=lstep*(2*x-6)
+B-=lstep*(2*y-8)
 
 for i in range(100):
     x-=lstep[i]*(2*x-6)

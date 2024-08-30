@@ -24,24 +24,6 @@ from sklearn.linear_model import Ridge
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 
-lasso=Lasso(alpha=0.015)
-ridge=Ridge(alpha=0.015)
-
-lasso.fit(train_x, train_y)
-ridge.fit(train_x, train_y)
-
-
-y1=lasso.predict(test)
-y2=ridge.predict(test)
-y3=(y1 + y2 )/ 2 
-sub["yield"]=y3
-sub.to_csv("sample_submission3.csv", index=False)
-
-
-array([4260.08064562, 6038.80817666, 7176.52275197, ..., 6858.02774247,
-       4390.92783107, 7244.51027876])
-
-
 ridge=Ridge(alpha=10)
 lr=LinearRegression()
 #dtr= DecisionTreeRegressor(max_depth=10)
@@ -94,3 +76,132 @@ np.std(b)
 np.sqrt(180)* 0.37
 1.87 * 20
 b=np.array([7,7,7,-2,-2])
+#________________________ 남규
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.stats import norm, uniform
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import Lasso, Ridge
+from sklearn.model_selection import cross_val_score, KFold
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+from sklearn.metrics import make_scorer, mean_squared_error
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import StandardScaler
+
+## 필요한 데이터 불러오기
+berry_train=pd.read_csv("data/train.csv")
+berry_test=pd.read_csv("data/test.csv")
+sub_df=pd.read_csv("sample_submission.csv")
+
+berry_train.isna().sum()
+berry_test.isna().sum()
+
+berry_train.info()
+
+## train
+X=berry_train.drop(["yield", "id"], axis=1)
+y=berry_train["yield"]
+berry_test=berry_test.drop(["id"], axis=1)
+
+# 표준화
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+test_X_scaled=scaler.transform(berry_test)
+
+# 정규화된 데이터를 DataFrame으로 변환
+X = pd.DataFrame(X_scaled, columns=X.columns)
+test_X= pd.DataFrame(test_X_scaled, columns=berry_test.columns)
+
+polynomial_transformer=PolynomialFeatures(3)
+
+polynomial_features=polynomial_transformer.fit_transform(X.values)
+features=polynomial_transformer.get_feature_names_out(X.columns)
+X=pd.DataFrame(polynomial_features,columns=features)
+
+polynomial_features=polynomial_transformer.fit_transform(test_X.values)
+features=polynomial_transformer.get_feature_names_out(test_X.columns)
+test_X=pd.DataFrame(polynomial_features,columns=features)
+
+#######alpha
+# 교차 검증 설정
+kf = KFold(n_splits=20, shuffle=True, random_state=2024)
+
+def rmse(model):
+    score = np.sqrt(-cross_val_score(model, X, y, cv = kf,
+                                     n_jobs = -1, scoring = "neg_mean_squared_error").mean())
+    return(score)
+
+# 각 알파 값에 대한 교차 검증 점수 저장
+alpha_values = np.arange(2, 4, 1)
+mean_scores = np.zeros(len(alpha_values))
+
+k=0
+for alpha in alpha_values:
+    lasso = Lasso(alpha=alpha)
+    mean_scores[k] = rmse(lasso)
+    k += 1
+
+# 결과를 DataFrame으로 저장
+df = pd.DataFrame({
+    'lambda': alpha_values,
+    'validation_error': mean_scores
+})
+
+# 최적의 alpha 값 찾기
+optimal_alpha = df['lambda'][np.argmin(df['validation_error'])]
+print("Optimal lambda:", optimal_alpha)
+
+# 결과 시각화
+plt.plot(df['lambda'], df['validation_error'], label='Validation Error', color='red')
+plt.xlabel('Lambda')
+plt.ylabel('Mean Squared Error')
+plt.legend()
+plt.title('Lasso Regression Train vs Validation Error')
+plt.show()
+
+
+### model
+model= Lasso(alpha=2.9)
+
+# 모델 학습
+model.fit(X, y)  # 자동으로 기울기, 절편 값을 구해줌
+
+pred_y_lasso=model.predict(test_X) # test 셋에 대한 집값
+pred_y
+
+
+
+
+
+# ridge==========================================================================
+# 각 알파 값에 대한 교차 검증 점수 저장
+alpha_values = np.arange(70, 80, 0.01)
+mean_scores = np.zeros(len(alpha_values))
+
+k=0
+for alpha in alpha_values:
+    ridge = Ridge(alpha=alpha)
+    mean_scores[k] = rmse(ridge)
+    k += 1
+
+# 결과를 DataFrame으로 저장
+df = pd.DataFrame({
+    'lambda': alpha_values,
+    'validation_error': mean_scores
+})
+
+# 최적의 alpha 값 찾기
+optimal_alpha = df['lambda'][np.argmin(df['validation_error'])]
+print("Optimal lambda:", optimal_alpha)
+
+
+
+
+
+
+import pandas as pd
+import numpy as np
+import matplotlib as plt
+skl

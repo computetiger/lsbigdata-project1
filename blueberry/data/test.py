@@ -10,9 +10,4 @@ from sklearn.pipeline import make_pipeline
 from sklearn.metrics import make_scorer, mean_squared_error
 
 train=pd.read_csv("data/train.csv")
-test=pd.read_csv("data/test.csv")
-
-
-
-
-
+ztest=pd.read_csv("data/test.csv")
