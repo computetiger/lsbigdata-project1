@@ -3,6 +3,7 @@ title: "쿼토 PPT 만들기"
 author: "Ji won"
 format: 
     revealjs:
+        theme: moon
         incremetal: true
 ---
 
@@ -75,3 +76,13 @@ plt.plot(x,y)
     - 서브아이템 1  
         - 서브의 서브 아이템 1
 
+## tab- set
+::: {.panel-tabset}
+### Tab A
+ content for "Tab A"
+
+### Tab B
+ content for "Tab B"
+:::
+
+## 새 슬라이드{background-color="aquamarine"}
