@@ -1,0 +1,110 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"쿼토 PPT 만들기\"\n",
+        "author: \"Ji won\"\n",
+        "format: \n",
+        "    revealjs:\n",
+        "        incremetal: true\n",
+        "---\n",
+        "\n",
+        "\n",
+        "## 문제1\n",
+        "::: {.incremental}\n",
+        "\n",
+        "- Turn off alarm\n",
+        "- Get out of bed\n",
+        "\n",
+        "::: \n",
+        "\n",
+        "## Going to sleep\n",
+        "\n",
+        ":::: {.columns}\n",
+        "\n",
+        "::: {.column width=\"40%\"}\n",
+        "\n",
+        "\n",
+        "- Get in bed\n",
+        "- Count sheep\n",
+        ":::\n",
+        "\n",
+        "::: {.column width=\"60%\"}\n"
+      ],
+      "id": "58352a58"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "import numpy as np # <1>\n",
+        "import pandas as pd # <2>\n",
+        "import matplotlib.pyplot as plt\n",
+        "x=np.linspace(-5,5,100)\n",
+        "y=x**2 + 4*x - 7\n",
+        "plt.plot(x,y)"
+      ],
+      "id": "44730cd8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "::::\n",
+        "\n",
+        "# 4번째 문제.       \n",
+        "## 내맘대로 제목 만들기     \n",
+        "### 이것은 본문 입니다.     \n",
+        "#### 어느 자리에 들어갈까.  {.smaller}   \n",
+        "- 아이템 1   \n",
+        "* 아이템 2\n",
+        "    - 서브아이템 1  \n",
+        "        - 서브의 서브 아이템 1\n",
+        "*** \n",
+        "- 이런 것도 되는지      \n",
+        "\n",
+        "\n",
+        "## 스크롤 가능한 페이지 만들기. {.scrollable}\n",
+        "- 아이템 1   \n",
+        "* 아이템 2\n",
+        "    - 서브아이템 1  \n",
+        "        - 서브의 서브 아이템 1\n",
+        "- 아이템 1   \n",
+        "* 아이템 2\n",
+        "    - 서브아이템 1  \n",
+        "        - 서브의 서브 아이템 1\n",
+        "- 아이템 1   \n",
+        "* 아이템 2\n",
+        "    - 서브아이템 1  \n",
+        "        - 서브의 서브 아이템 1\n",
+        "- 아이템 1   \n",
+        "* 아이템 2\n",
+        "    - 서브아이템 1  \n",
+        "        - 서브의 서브 아이템 1\n",
+        "- 아이템 1   \n",
+        "* 아이템 2\n",
+        "    - 서브아이템 1  \n",
+        "        - 서브의 서브 아이템 1\n"
+      ],
+      "id": "84e1d06e"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\DS\\Python\\Python312\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

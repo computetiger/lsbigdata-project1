@@ -1,0 +1,77 @@
+---
+title: "쿼토 PPT 만들기"
+author: "Ji won"
+format: 
+    revealjs:
+        incremetal: true
+---
+
+## 문제1
+::: {.incremental}
+
+- Turn off alarm
+- Get out of bed
+
+::: 
+
+## Going to sleep
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+
+- Get in bed
+- Count sheep
+:::
+
+::: {.column width="60%"}
+
+```{python code-line-number: "3, 5"}
+#| echo: true
+import numpy as np # <1>
+import pandas as pd # <2>
+import matplotlib.pyplot as plt
+x=np.linspace(-5,5,100)
+y=x**2 + 4*x - 7
+plt.plot(x,y)
+```
+
+:::
+
+::::
+
+# 4번째 문제.       
+## 내맘대로 제목 만들기     
+### 이것은 본문 입니다.     
+#### 어느 자리에 들어갈까.  {.smaller}   
+- 아이템 1   
+* 아이템 2
+    - 서브아이템 1  
+        - 서브의 서브 아이템 1
+*** 
+- 이런 것도 되는지      
+
+
+## 스크롤 가능한 페이지 만들기. {.scrollable}
+- 아이템 1   
+* 아이템 2
+    - 서브아이템 1  
+        - 서브의 서브 아이템 1
+- 아이템 1   
+* 아이템 2
+    - 서브아이템 1  
+        - 서브의 서브 아이템 1
+- 아이템 1   
+* 아이템 2
+    - 서브아이템 1  
+        - 서브의 서브 아이템 1
+- 아이템 1   
+* 아이템 2
+    - 서브아이템 1  
+        - 서브의 서브 아이템 1
+- 아이템 1   
+* 아이템 2
+    - 서브아이템 1  
+        - 서브의 서브 아이템 1
+
