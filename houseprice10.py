@@ -4,16 +4,21 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 
+'''
 # 워킹 디렉토리 설정
 import os
 cwd=os.getcwd()
 parent_dir = os.path.dirname(cwd)
 os.chdir(parent_dir)
+'''
+import os
+print(os.getcwd())  # 현재 작업 디렉토리 출력
+
 
 ## 필요한 데이터 불러오기
-house_train=pd.read_csv("data/house/train.csv")
-house_test=pd.read_csv("data/house/test.csv")
-sub_df=pd.read_csv("sample_submission.csv")
+house_train=pd.read_csv("lsbigdata-project1/data/house/train.csv")
+house_test=pd.read_csv("lsbigdata-project1/data/house/test.csv")
+sub_df=pd.read_csv("lsbigdata-project1/sample_submission.csv")
 
 ## NaN 채우기
 # 각 숫치형 변수는 평균 채우기
@@ -59,30 +64,12 @@ df
 train_df=df.iloc[:train_n,]
 test_df=df.iloc[train_n:,]
 
-# Validation 셋(모의고사 셋) 만들기
-np.random.seed(42)
-val_index=np.random.choice(np.arange(train_n), size=438, replace=False)
-val_index
-
-# train => valid / train 데이터셋
-valid_df=train_df.loc[val_index]  # 30%
-train_df=train_df.drop(val_index) # 70%
-
 ## 이상치 탐색
 train_df=train_df.query("GrLivArea <= 4500")
-
-# x, y 나누기
-# regex (Regular Expression, 정규방정식)
-# ^ 시작을 의미, $ 끝남을 의미, | or를 의미
-# selected_columns=train_df.filter(regex='^GrLivArea$|^GarageArea$|^Neighborhood_').columns
 
 ## train
 train_x=train_df.drop("SalePrice", axis=1)
 train_y=train_df["SalePrice"]
-
-## valid
-valid_x=valid_df.drop("SalePrice", axis=1)
-valid_y=valid_df["SalePrice"]
 
 ## test
 test_x=test_df.drop("SalePrice", axis=1)
@@ -90,32 +77,39 @@ test_x=test_df.drop("SalePrice", axis=1)
 # 선형 회귀 모델 생성
 # 라쏘는?
 from sklearn.linear_model import Lasso
-model = Lasso(alpha=0.03)
+ls = Lasso(alpha=0.03)
 param_grid={
     "alpha":[0.1, 1.0, 10.0, 100.0]
     }
 
 # 릿지는? 
 from sklearn.linear_model import Ridge
-model = Ridge(alpha=0.03)
-model = LinearRegression()
+rd = Ridge(alpha=0.03)
+lr = LinearRegression()
 
 from sklearn.linear_model import ElasticNet
-model = ElasticNet()
+from sklearn.model_selection import  GridSearchCV
+from sklearn.ensemble import RandomForestRegressor
+
+ela = ElasticNet()
+rfr=RandomForestRegressor(n_estimators=100) # n_ : tree 개수
 
 param_grid={
     "alpha": [0.1 , 1.0 , 10.0 , 100.0], 
     "l1_ratio":[0, 0.1,0.5,1.0]}
 
-
-from sklearn.model_selection import  GridSearchCV
 grid_search = GridSearchCV(
-    estimator=model,
+    estimator=ela,
     param_grid=param_grid,
     scoring="neg_mean_squared_error",
     cv=5
 )
 
+#그리드서치  for randomforests
+param_grid={"max_depth":[3,5,7],
+"min_samples_split":[20,10,5],
+"min_samples_leaf":[5,10,20,30],
+}
 
 grid_search.fit(train_x, train_y)
 
