@@ -13,11 +13,11 @@ tab1, tab2= st.tabs(['Tab A' , 'Tab B'])
 
 with tab1:
   #tab A 를 누르면 표시될 내용
-  st.write('hello')
+  st.write('hello_new_version')
 
 with tab2:
   #tab B를 누르면 표시될 내용
-  st.write('hi')
+  st.write('hi_hi_new')
 
 # 데이터 프레임
 import pandas as pd
