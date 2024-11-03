@@ -15,7 +15,7 @@ with tab1:
   #tab A 를 누르면 표시될 내용
   st.write('hello_new_version')
   import pandas as pd
-  data = pd.read_csv('data_week4.csv', encoding='cp949')
+  data = pd.read_csv('data/data_week4.csv', encoding='cp949')
   st.write(data.head())
 
 with tab2:
