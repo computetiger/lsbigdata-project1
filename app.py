@@ -14,6 +14,9 @@ tab1, tab2= st.tabs(['Tab A' , 'Tab B'])
 with tab1:
   #tab A 를 누르면 표시될 내용
   st.write('hello_new_version')
+  import pandas as pd
+  data = pd.read_csv('data_week4.csv', encoding='cp949')
+  st.write(data.head())
 
 with tab2:
   #tab B를 누르면 표시될 내용
@@ -21,8 +24,5 @@ with tab2:
 
 # 데이터 프레임
 import pandas as pd
-df = pd.DataFrame({
-     '첫 번째 컬럼': [1, 2, 3, 4],
-     '두 번째 컬럼': [10, 20, 30, 40]
-     })
-st.write(df)
+data = pd.read_csv('data_week4.csv', encoding='cp949')
+st.write(data.head())
