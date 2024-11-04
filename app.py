@@ -8,7 +8,6 @@ st.write('Hello, *World!* :sunglasses:') # 해당 내용을 수정해서 사이�
 st.title('불량 원인 파악 및 공정 최적화')
 st.header('5th Project: 강남규 김연예진 김재희 박수빈 이재준 최지원 ')
 st.subheader('LS Bigdata School 3rd')
-#data = pd.read_csv('data/data_week4.csv', encoding='cp949')
 # 탭 생성 : 첫번째 탭의 이름은 Tab A 로, Tab B로 표시합니다.
 tab1, tab2= st.tabs(['Tab A' , 'Tab B'])
 
@@ -54,7 +53,3 @@ with tab2:
   #tab B를 누르면 표시될 내용
   st.write('hi_hi_new')
 
-# 데이터 프레임
-import pandas as pd
-data = pd.read_csv('data_week4.csv', encoding='cp949')
-st.write(data.head())
